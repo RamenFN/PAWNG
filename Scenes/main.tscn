@@ -1,3 +1,61 @@
-[gd_scene format=3 uid="uid://t5ohrrqwrpgt"]
+[gd_scene load_steps=9 format=3 uid="uid://t5ohrrqwrpgt"]
+
+[ext_resource type="PackedScene" uid="uid://chmaj8dalecu2" path="res://Scenes/ball.tscn" id="1_ki7fb"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_nrbqu"]
+[ext_resource type="PackedScene" uid="uid://crlbv6yl3yjbi" path="res://Scenes/left_arm.tscn" id="2_2i4t3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ykb22"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ji0re"]
+size = Vector2(20, 1643)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fxgu"]
+size = Vector2(48, 1639)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8wji"]
+size = Vector2(1080.75, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_til3c"]
+size = Vector2(1083, 20)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_nrbqu")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(0, 155)
+scale = Vector2(1, 0.919101)
+polygon = PackedVector2Array(1080, 140.355, 0, 140.355, 0, 1920.35, 1080, 1920.35)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(540, 1100)
+
+[node name="AnimatableBody2D" parent="." instance=ExtResource("2_2i4t3")]
+position = Vector2(227, 1368)
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_ykb22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2(-10, 1098.5)
+shape = SubResource("RectangleShape2D_ji0re")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+position = Vector2(1104, 1102.5)
+shape = SubResource("RectangleShape2D_0fxgu")
+
+[node name="BottomWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+position = Vector2(539.625, 1930)
+shape = SubResource("RectangleShape2D_x8wji")
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+position = Vector2(541.5, 274)
+shape = SubResource("RectangleShape2D_til3c")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_ki7fb")]
+position = Vector2(275, 372)

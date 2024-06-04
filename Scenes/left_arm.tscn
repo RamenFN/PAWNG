@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://crlbv6yl3yjbi"]
+
+[ext_resource type="Script" path="res://Scripts/Left Arm.gd" id="1_yf1y5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clcgr"]
+size = Vector2(3, 17)
+
+[node name="Left Arm" type="CharacterBody2D" groups=["paws"]]
+script = ExtResource("1_yf1y5")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+scale = Vector2(25, 141.667)
+color = Color(0.983381, 0.740228, 0.527493, 1)
+polygon = PackedVector2Array(0, 0, 0, 3, 3, 3, 3, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(37.5, 212.5)
+scale = Vector2(25, 25)
+shape = SubResource("RectangleShape2D_clcgr")
